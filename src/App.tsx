@@ -194,7 +194,7 @@ function App() {
 
       {/* Footer */}
       <p className="absolute bottom-4 text-xs text-white/50 tracking-wide text-center w-full drop-shadow-sm">
-        Powered by Boba Tea &amp; Good Vibes 🧋
+        From your Indonesian friend 🇮🇩
       </p>
     </div>
   )
