@@ -18,7 +18,23 @@ const floatingSymbols = mathSymbols.map((sym, i) => ({
   delay: `${(i * 0.4).toFixed(1)}s`,
 }))
 
-type TicketStatus = 'pending' | 'accepted' | 'rejected'
+const NTFY_TOPIC = 'arina-card-8march-irazkisra'
+
+function notifyVisit() {
+  if (localStorage.getItem('card-visit-notified')) return
+  localStorage.setItem('card-visit-notified', '1')
+  fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
+    method: 'POST',
+    headers: {
+      Title: '🌷 Arina opened your card!',
+      Priority: 'high',
+      Tags: 'tulip,tada',
+    },
+    body: 'Arina just opened the 8th March greeting card 🎉',
+  }).catch(() => {/* silent fail — no backend required */})
+}
+
+
 
 const TG = 'irazkisra'
 
@@ -95,6 +111,7 @@ function App() {
   const [ticketRevealed, setTicketRevealed] = useState(false)
 
   useEffect(() => {
+    notifyVisit()
     const interval = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
