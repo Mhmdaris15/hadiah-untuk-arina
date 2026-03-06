@@ -22,7 +22,6 @@ const NTFY_TOPIC = 'arina-card-8march-irazkisra'
 
 function notifyVisit() {
   if (localStorage.getItem('card-visit-notified')) return
-  localStorage.setItem('card-visit-notified', '1')
   fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
     method: 'POST',
     headers: {
@@ -31,7 +30,9 @@ function notifyVisit() {
       Tags: 'tulip,tada',
     },
     body: 'Arina just opened the 8th March greeting card 🎉',
-  }).catch(() => {/* silent fail — no backend required */})
+  })
+    .then(() => localStorage.setItem('card-visit-notified', '1'))
+    .catch(() => {/* silent fail */})
 }
 
 
