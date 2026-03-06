@@ -21,9 +21,9 @@ const floatingSymbols = mathSymbols.map((sym, i) => ({
 const NTFY_TOPIC = 'arina-card-8march-irazkisra'
 
 function notifyVisit() {
-  if (localStorage.getItem('card-visit-notified')) return
+  // if (localStorage.getItem('card-visit-notified')) return
   fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
-    method: 'POST',
+    method: 'GET',
     headers: {
       Title: '🌷 Arina opened your card!',
       Priority: 'high',
