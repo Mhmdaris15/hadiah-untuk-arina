@@ -21,21 +21,20 @@ const floatingSymbols = mathSymbols.map((sym, i) => ({
 const NTFY_TOPIC = 'arina-card-8march-irazkisra'
 
 function notifyVisit() {
-  // if (localStorage.getItem('card-visit-notified')) return
+  if (localStorage.getItem('card-visit-notified')) return
   fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
-    method: 'GET',
+    method: 'POST',
     headers: {
-      Title: '🌷 Arina opened your card!',
-      Priority: 'high',
-      Tags: 'tulip,tada',
+      'Title': 'Arina opened your card!',
+      'Priority': 'high',
+      'Tags': 'tulip,tada',
+      'Content-Type': 'text/plain',
     },
-    body: 'Arina just opened the 8th March greeting card 🎉',
+    body: 'Arina just opened the 8th March greeting card',
   })
     .then(() => localStorage.setItem('card-visit-notified', '1'))
     .catch(() => {/* silent fail */})
 }
-
-
 
 const TG = 'irazkisra'
 
