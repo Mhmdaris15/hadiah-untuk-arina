@@ -38,6 +38,8 @@ function notifyVisit() {
 
 const TG = 'irazkisra'
 
+type TicketStatus = 'pending' | 'accepted' | 'rejected'
+
 function buildTelegramUrl(text: string) {
   return `tg://resolve?domain=${TG}&text=${encodeURIComponent(text)}`
 }
